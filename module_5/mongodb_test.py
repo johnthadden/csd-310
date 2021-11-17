@@ -1,3 +1,7 @@
+#John Hadden
+# 11/17/2021
+#Assignment 5.2
+#Linking empty collection from MongoDB Atlas to python file
 from pymongo import MongoClient
 
 url = "mongodb+srv://admin:admin@cluster0.jiuf0.mongodb.net/pytech?retryWrites=true&w=majority"
