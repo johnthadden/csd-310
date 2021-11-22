@@ -17,7 +17,6 @@ john2_student_id = students.insert_one(john2).inserted_id
 
 print("-- Insert Statements --")
 print("Inserted student record " + john2["first_name"] + " " john2["last_name"] + " into the students collection with document_id " + john2_student_id)
-john2_student_id = students.insert_one(john2).inserted_id
 
 doc = db.collection_name.find_one({“student_id”: “1010”})
  
