@@ -12,7 +12,7 @@ config = {
 try:
     db = mysql.connector.connect(**config)
 
-    print("\n Database user {} connected to MySQL on host {} with database {}".format(config["user"], config["host", confid["database"]]))
+    print("\n Database user {} connected to MySQL on host {} with database {}".format(config["user"], config["host"], config["database"]))
 
     input("\n\n Press any key to continue...")
 
@@ -26,11 +26,15 @@ except mysql.connector.Error as err:
     else:
         print(err)
 
-finally:
-    db.close()
-    
+cursor = db.cursor()
+cursor.execute('''
 SELECT player_id, first_name, last_name, team_name
-FROM player
-INNER JOIN team
-    ON player.team_id = team.team.id;
+FROM player 
+LEFT OUTER JOIN team 
+ON player.team_id = team.team_id;''')
+players = cursor.fetchall()
+print("-- DISPLAYING PLAYER RECORDS --")
+for player in players:
+    print("Player ID: {}".format(player[0]) + "\nFirst Name: {}".format(player[1]) + "\nLast Name: {}".format(player[2]) + "\nTeam Name: {}".format(player[3]) + "\n")
 
+input("\n\n Press any key to continue...")
